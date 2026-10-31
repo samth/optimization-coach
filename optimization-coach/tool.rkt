@@ -25,6 +25,9 @@
                     [_ #f]))
     ("Report hidden costs?" .
      ,(match-lambda [(report-entry k m s 'hidden-cost start end) #t]
+                    [_ #f]))
+    ("Report struct layout?" .
+     ,(match-lambda [(report-entry k m s 'struct-layout start end) #t]
                     [_ #f]))))
 
 (define (copy-definitions definitions)

@@ -32,7 +32,7 @@
 
 ;; IR used for the later passes (locality merging, filtering, etc. anything
 ;; that doesn't directly involve interpreting raw logs).
-;; provenance is one of: 'typed-racket 'inlining 'hidden-cost
+;; provenance is one of: 'typed-racket 'inlining 'hidden-cost 'struct-layout
 (struct report-entry (kind msg stx provenance start end)        #:transparent)
 (struct success-report-entry   report-entry ()                  #:transparent)
 (struct near-miss-report-entry report-entry (badness irritants) #:transparent)

@@ -2,7 +2,7 @@
 
 (require racket/contract racket/list (only-in profile/analyzer profile?)
          "instrumentation.rkt" "profiling.rkt" "utils.rkt"
-         "typed-racket.rkt" "inlining.rkt" "hidden-costs.rkt"
+         "typed-racket.rkt" "inlining.rkt" "hidden-costs.rkt" "struct-layout.rkt"
          "locality-merging.rkt" "structs.rkt")
 
 (provide/contract
@@ -28,7 +28,8 @@
   (define hot-functions (and profile (prune-profile profile)))
 
   (define basic-reports ; always shown
-    (report-typed-racket TR-log profile hot-functions))
+    (append (report-typed-racket TR-log profile hot-functions)
+            (report-struct-layout expanded-syntax)))
 
   ;; in verbose mode, show hidden costs and inlining reports no matter what
   ;; otherwise, these have too low a SNR to be worth showing without profile
